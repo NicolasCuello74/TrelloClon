@@ -32,7 +32,7 @@ const BoardWrapper = ( {id, children}: Props ) => {
     onMouseEnter={  () => handleMouseEnter(id)}
     onMouseLeave={  () => handleMouseLeave(id)}
     id={id} 
-    className="board-wrapper flex justify-between items-center p-4"
+    className="board-wrapper text-sm h-full w-full flex justify-between items-center p-2 rounded-md hover:bg-muted-foreground"
     >
         {children}
     </div>

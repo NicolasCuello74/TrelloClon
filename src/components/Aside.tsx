@@ -60,9 +60,9 @@ const Aside: React.FC<AsideProps> = ({ isCollapsed, setIsCollapsed }) => {
             
             <Separator/>
             
-            <div id="boards-container" className="flex flex-col py-4">
+            <div id="boards-container" className="flex flex-col pt-4">
               {boards.map((board) => (
-                <div key={board.id} className="px-4 py-1 hover:bg-muted-foreground">
+                <div key={board.id} className="px-4 hover:bg-muted-foreground">
                   <BoardWrapper id={`board-${board.id}`}>
                     <h3 className="">{board.name}</h3>
                     <BoardOptions>
