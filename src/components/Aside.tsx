@@ -6,6 +6,8 @@ import BoardWrapper from "./BoardWrapper";
 import BoardOptions from "./BoardOptions";
 import { useState } from "react";
 import { useUserStore } from "./utils/user";
+import AddBoar from "./AddBoards";
+import { useBoardsStore } from "./utils/boards";
 
 interface AsideProps {
   isCollapsed: boolean;
@@ -16,11 +18,7 @@ interface AsideProps {
 const Aside: React.FC<AsideProps> = ({ isCollapsed, setIsCollapsed }) => {
   const { name, setName } = useUserStore();
   const [isEditing, setIsEditing] = useState(false);
-  const boards = [
-    { id: 1, name: "Tablero 1" },
-    { id: 2, name: "Tablero 2" },
-    { id: 3, name: "Tablero 3" }
-  ];
+  const boards = useBoardsStore((state) => state.boards);
   
   return (
     <aside className={`relative h-full bg-gray-800 border-r border-background text-white transition-all duration-300 ${isCollapsed ? "w-[24px]" : "w-64"}`}>
@@ -70,7 +68,9 @@ const Aside: React.FC<AsideProps> = ({ isCollapsed, setIsCollapsed }) => {
               </div>
 
               <BoardOptions>
-                <Plus/>
+                <AddBoar>
+                  <Plus/>
+                </AddBoar>
               </BoardOptions>
             </BoardWrapper>
             
@@ -80,7 +80,7 @@ const Aside: React.FC<AsideProps> = ({ isCollapsed, setIsCollapsed }) => {
               {boards.map((board) => (
                 <div key={board.id} className="px-4 hover:bg-muted-foreground">
                   <BoardWrapper id={`board-${board.id}`}>
-                    <h3 className="">{board.name}</h3>
+                    <h3 className="">{board.title}</h3>
                     <BoardOptions>
                         <Ellipsis size={16}/>
                     </BoardOptions>

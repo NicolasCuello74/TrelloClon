@@ -3,20 +3,20 @@ import { Button} from './ui/button';
 import type { Board } from '../types';
 import List from './List';
 import { Plus } from 'lucide-react';
+import { useParams } from 'react-router-dom';
 
-type Props = {
-    board: Board
-  };
 
-const Board = ({ board }: Props) => { 
+const Board = () => { 
+    const { boardId } = useParams<{ boardId: string }>();
     return (
         <>
-            <div className="board-header h-22 flex items-center pl-4 gap-4 text-lg text-muted">
+            {/* <div className="board-header h-22 flex items-center pl-4 gap-4 text-lg text-muted">
                 <h2 className='h-auto w-auto rounded-2xl hover:bg-muted-foreground p-2'>{board.title}</h2>
                 <Button/>
             </div>
-            <Separator/>
-            <div className="board-content flex flex-nowrap text-muted overflow-x-auto h-full max-h-[calc(100vh-80px)]">
+            <Separator/> */}
+            <span>{boardId}</span>
+            {/* <div className="board-content flex flex-nowrap text-muted overflow-x-auto h-full max-h-[calc(100vh-80px)]">
                 {board.list.map((list) => (
                     <List key={`list-${list.id}`} list={list} boardName={board.title}></List>
                 ))}
@@ -25,7 +25,7 @@ const Board = ({ board }: Props) => {
                    <h3>Anadir Lista</h3>
                    <Plus/> 
                 </div>
-            </div>
+            </div> */}
         </>
     );
     }
