@@ -4,6 +4,8 @@ import { Button } from "./ui/button"
 import { ChevronLeft, Plus, Ellipsis, ChevronRight, SquareKanban, SquareUserRound, Settings } from "lucide-react"
 import BoardWrapper from "./BoardWrapper";
 import BoardOptions from "./BoardOptions";
+import { useState } from "react";
+import { useUserStore } from "./utils/user";
 
 interface AsideProps {
   isCollapsed: boolean;
@@ -12,7 +14,8 @@ interface AsideProps {
 
 
 const Aside: React.FC<AsideProps> = ({ isCollapsed, setIsCollapsed }) => {
-  const name = 'Nicolas Cuello';
+  const { name, setName } = useUserStore();
+  const [isEditing, setIsEditing] = useState(false);
   const boards = [
     { id: 1, name: "Tablero 1" },
     { id: 2, name: "Tablero 2" },
@@ -23,17 +26,30 @@ const Aside: React.FC<AsideProps> = ({ isCollapsed, setIsCollapsed }) => {
     <aside className={`relative h-full bg-gray-800 border-r border-background text-white transition-all duration-300 ${isCollapsed ? "w-[24px]" : "w-64"}`}>
       <div className="flex h-20 items-center gap-4 px-4 py-2">
         {!isCollapsed && (
-          <Avatar>
-            <div className="w-full h-full text-2xl text-center bg-gray-400">
-              {name[0].toUpperCase()}
-            </div>
-          </Avatar>
-        )}
-        {!isCollapsed && (
-          <div>
-            <h2 className="text-xl font-bold">{name}</h2>
-            <span className="text-xs italic">Gratuito</span>
-          </div>
+          <>
+            <Avatar>
+              <div className="w-full h-full text-2xl text-center bg-gray-400">
+                {name ? name[0].toUpperCase() : "U"}
+              </div>
+            </Avatar>
+            <div className="flex flex-col gap-1 w-3/4">
+                {isEditing ? (
+                  <input
+                    type="text"
+                    className="text-xl w-auto font-bold bg-gray-700 text-white rounded px-2"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    onBlur={() => setIsEditing(false)}
+                    autoFocus
+                  />
+                  ) : (
+                  <h2 className="text-xl font-bold cursor-pointer" onClick={() => setIsEditing(true)}>
+                    {name ? name : "Usuario"}
+                  </h2>
+                  )}
+                  <span className="text-xs italic">Gratuito</span>
+              </div>
+            </>
         )}
         <Button
           size="icon"

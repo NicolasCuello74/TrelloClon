@@ -25,7 +25,7 @@ const List = ({ list, boardName }: Props) => {
                             <Separator/>
                             <div ref={todoList} id={`list-tasks-${list.id}`} className='flex flex-col gap-2 pt-2'>
                                 {todos.map((task) => (
-                                    <Task task={task}/>
+                                    <Task key={task.id} task={task}/>
                                 ))}
                             </div>
                         </div>
