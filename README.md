@@ -1,54 +1,59 @@
-# React + TypeScript + Vite
+# Trello Clon
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bienvenido a **Trello Clon**, una aplicación inspirada en Trello para la gestión de tareas y proyectos. Construida con **React**, **Vite**, **TailwindCSS**, y otras tecnologías modernas.
 
-Currently, two official plugins are available:
+## 🚀 Tecnologías
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Este proyecto utiliza las siguientes herramientas y librerías:
 
-## Expanding the ESLint configuration
+- [React](https://react.dev/) (v19)
+- [Vite](https://vitejs.dev/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [React Router](https://reactrouter.com/)
+- [Zustand](https://zustand-demo.pmnd.rs/)
+- [Radix UI](https://www.radix-ui.com/) (Dialog, Avatar, Label, Separator, Slot)
+- [Lucide React](https://lucide.dev/)
+- [FormKit Drag and Drop](https://formkit.com/)
+- ESLint y TypeScript
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## ⚙️ Instalación y Uso
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+Sigue estos pasos para ejecutar el proyecto en tu entorno local:
+
+### 1️⃣ Clonar el repositorio
 ```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+git clone https://github.com/tu_usuario/trello-clon.git
+cd trello-clon
 ```
+### 2️⃣ Instalar dependencias
+```npm install```
+
+### 3️⃣ Ejecutar el servidor de desarrollo
+```npm run dev ```
+
+
+### 4️⃣ Generar una versión de producción
+```npm run build ```
+
+
+### 5️⃣ Vista previa del proyecto compilado
+```npm run preview ```
+
+## 🛠 Scripts Disponibles
+En el archivo package.json, encontrarás estos scripts útiles:
+- npm run dev – Inicia el servidor de desarrollo con Vite.
+- npm run build – Compila el código para producción.
+- npm run preview – Previsualiza la versión compilada.
+- npm run lint – Ejecuta ESLint para análisis de código.
+
+## 🤝 Contribuir
+Si deseas contribuir, ¡eres bienvenido! Solo sigue estos pasos:
+- Haz un fork del repositorio.
+- Crea una nueva rama (git checkout -b feature-nueva).
+- Realiza tus cambios y confírmalos (git commit -m "Añadir nueva funcionalidad").
+- Envía un pull request para revisión.
+
+## 📜 Licencia
+Este proyecto está bajo la licencia MIT, por lo que puedes modificarlo y usarlo libremente.
+
+¡Esperamos que disfrutes usando Trello Clon! 🚀
