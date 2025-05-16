@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useUserStore } from "./utils/user";
 import AddBoar from "./AddBoards";
 import { useBoardsStore } from "./utils/boards";
+import { Link } from "react-router-dom";
 
 interface AsideProps {
   isCollapsed: boolean;
@@ -66,7 +67,6 @@ const Aside: React.FC<AsideProps> = ({ isCollapsed, setIsCollapsed }) => {
                   <SquareKanban />
                   <h2 className="font-medium">Tableros</h2>
               </div>
-
               <BoardOptions>
                 <AddBoar>
                   <Plus/>
@@ -80,7 +80,7 @@ const Aside: React.FC<AsideProps> = ({ isCollapsed, setIsCollapsed }) => {
               {boards.map((board) => (
                 <div key={board.id} className="px-4 hover:bg-muted-foreground">
                   <BoardWrapper id={`board-${board.id}`}>
-                    <h3 className="">{board.title}</h3>
+                    <Link to={`/board/${board.id}`} className="flex gap-1">{board.title}</Link>
                     <BoardOptions>
                         <Ellipsis size={16}/>
                     </BoardOptions>
