@@ -1,7 +1,7 @@
 import { Separator } from "./ui/separator"
 import { Avatar } from "./ui/avatar"
 import { Button } from "./ui/button"
-import { ChevronLeft, Plus, Ellipsis, ChevronRight, SquareKanban, SquareUserRound, Settings } from "lucide-react"
+import { ChevronLeft, Plus, Ellipsis, ChevronRight, SquareKanban, SquareUserRound, Settings, X } from "lucide-react"
 import BoardWrapper from "./BoardWrapper";
 import BoardOptions from "./BoardOptions";
 import { useState } from "react";
@@ -9,6 +9,7 @@ import { useUserStore } from "./utils/user";
 import AddBoar from "./AddBoards";
 import { useBoardsStore } from "./utils/boards";
 import { Link } from "react-router-dom";
+import DeleteBoards from "./DeleteBoards";
 
 interface AsideProps {
   isCollapsed: boolean;
@@ -82,7 +83,9 @@ const Aside: React.FC<AsideProps> = ({ isCollapsed, setIsCollapsed }) => {
                   <BoardWrapper id={`board-${board.id}`}>
                     <Link to={`/board/${board.id}`} className="flex gap-1">{board.title}</Link>
                     <BoardOptions>
-                        <Ellipsis size={16}/>
+                        <DeleteBoards boardId={board.id}>
+                          <X size={16}/>
+                        </DeleteBoards>                    
                     </BoardOptions>
                   </BoardWrapper>
                 </div>

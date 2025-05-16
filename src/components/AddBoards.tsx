@@ -28,6 +28,7 @@ const AddBoar = ({ children }: Props) => {
       title: name,
       list: [],
     })
+    setName("")
   }
   return (
     <Dialog>
