@@ -5,10 +5,12 @@ import List from './List';
 import { Plus } from 'lucide-react';
 import { useParams } from 'react-router-dom';
 import { useBoardsStore } from './utils/boards';
-
+import { useState } from 'react';
+import SelectDemo from "./SelectColors";
 
 const Board = () => { 
     const { boardId } = useParams<{ boardId: string }>();
+    const [bgColor, setBgColor] = useState("bg-gray-800");
     const board = useBoardsStore((state) => state.boards).find((board) => board.id === boardId);
     
     if (!board) {
@@ -21,19 +23,22 @@ const Board = () => {
 
 return (
     <>
-    <div className="board-header h-22 flex items-center pl-4 gap-4 text-lg text-muted">
-        <h2 className='h-auto w-auto rounded-2xl hover:bg-muted-foreground p-2'>{board.title}</h2>
-        <Button/>
-    </div>
-    <Separator/>
-    <div className="board-content flex flex-nowrap text-muted overflow-x-auto h-full max-h-[calc(100vh-80px)]">
-        {board.list.map((list) => (
-            <List key={`list-${list.id}`} list={list} boardName={board.title}></List>
-        ))}
-            
-        <div id='add-list' className='min-w-52 h-fit bg-muted-foreground rounded-2xl flex items-center justify-between text-muted hover:bg-gray-600 p-2 m-2'>
-            <h3>Anadir Lista</h3>
-            <Plus/> 
+    <div className={`flex flex-col h-full w-dvw overflow-y-hidden ${bgColor}`}>
+        <div className="board-header h-22 flex items-center pl-4 gap-4 text-lg text-muted">
+            <h2 className='h-auto w-auto rounded-2xl hover:bg-muted-foreground p-2'>{board.title}</h2>
+            <Button/>
+            <SelectDemo onColorChange={setBgColor} />
+        </div>
+        <Separator/>
+        <div className="board-content flex flex-nowrap text-muted overflow-x-auto h-full max-h-[calc(100vh-80px)]">
+            {board.list.map((list) => (
+                <List key={`list-${list.id}`} list={list} boardName={board.title}></List>
+            ))}
+                
+            <div id='add-list' className='min-w-52 h-fit bg-muted-foreground rounded-2xl flex items-center justify-between text-muted hover:bg-gray-600 p-2 m-2'>
+                <h3>Anadir Lista</h3>
+                <Plus/> 
+            </div>
         </div>
     </div>
     </>
