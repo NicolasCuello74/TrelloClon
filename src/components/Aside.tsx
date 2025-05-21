@@ -5,9 +5,9 @@ import { ChevronLeft, Plus, Ellipsis, ChevronRight, SquareKanban, SquareUserRoun
 import BoardWrapper from "./BoardWrapper";
 import BoardOptions from "./BoardOptions";
 import { useState } from "react";
-import { useUserStore } from "./utils/user";
+import { useUserStore } from "./utils/userStore";
 import AddBoar from "./AddBoards";
-import { useBoardsStore } from "./utils/boards";
+import { useBoardsStore } from "./utils/boardsStore";
 import { Link } from "react-router-dom";
 import DeleteBoards from "./DeleteBoards";
 

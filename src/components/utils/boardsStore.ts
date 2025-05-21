@@ -6,6 +6,7 @@ type BoardsStore = {
     addBoard: (board: BoardType) => void;
     removeBoard: (boardId: string) => void;
     updateBoard: (boardId: string, updatedBoard: BoardType) => void;
+    updateBoardColor: (id: string, color: string) => void;
 };
 
 export const useBoardsStore = create<BoardsStore>((set) => ({
@@ -31,4 +32,13 @@ export const useBoardsStore = create<BoardsStore>((set) => ({
             localStorage.setItem('boards', JSON.stringify(updatedBoards));
             return { boards: updatedBoards };
         }),
+        
+        updateBoardColor: (id: string, color: string) => set(({ boards }) => {
+        const updatedBoards = boards.map(board =>
+            board.id === id ? { ...board, color } : board
+        );
+        localStorage.setItem('boards', JSON.stringify(updatedBoards));
+        return { boards: updatedBoards };
+        })
+
     }));

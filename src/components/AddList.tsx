@@ -12,22 +12,23 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useBoardsStore } from "./utils/boardsStore"
+import { useListsStore } from "./utils/listStore"
 
 type Props = {
-  children?: React.ReactNode  | React.ReactNode[]
+    children?: React.ReactNode  | React.ReactNode[],
+    boardId: string
 }
 
-const AddBoar = ({ children }: Props) => {
-  const { addBoard } = useBoardsStore()
+const AddList = ({ children, boardId}: Props) => {
+  const { addList } = useListsStore()
   const [name, setName] = useState("")
-  
+
   const handleAddBoard = () => {
-    addBoard({
+    addList({
       id: crypto.randomUUID(),
       title: name,
-      color: "bg-gray-800",
-      list: [],
+      boardId: boardId,
+      tasks: [],
     })
     setName("")
   }
@@ -39,8 +40,8 @@ const AddBoar = ({ children }: Props) => {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Add Board</DialogTitle>
-          <DialogDescription>Add board to your profile. Click save when you're done.</DialogDescription>
+          <DialogTitle>Add List</DialogTitle>
+          <DialogDescription>Add list to your board. Click save when you're done.</DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
@@ -60,4 +61,4 @@ const AddBoar = ({ children }: Props) => {
   )
 }
 
-export default AddBoar;
+export default AddList;

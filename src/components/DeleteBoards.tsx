@@ -9,7 +9,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-import { useBoardsStore } from "./utils/boards"
+import { useBoardsStore } from "./utils/boardsStore"
 
 type Props = {
   children?: React.ReactNode  | React.ReactNode[],
