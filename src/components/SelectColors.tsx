@@ -13,7 +13,7 @@ const SelectDemo = ({ onColorChange }: { onColorChange: (color: string) => void}
   return (
     <Select onValueChange={onColorChange} >
       <SelectTrigger className="w-[180px]">
-        <SelectValue placeholder="Select a color" />
+        <SelectValue placeholder="Color" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
