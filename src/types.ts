@@ -13,4 +13,7 @@ export type List = {
 export type Task = {
     id: string;
     title: string;
+    listId: string;
+    boardId: string;
+    onchange?: (task: Task) => void;
 }

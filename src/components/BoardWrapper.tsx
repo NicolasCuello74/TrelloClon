@@ -2,6 +2,7 @@ type Props = {
     id: string;
     children: React.ReactNode;
 };
+import { cn } from '@/lib/utils';
 import React from 'react';
 
 const handleMouseEnter = (id: string) => {
@@ -32,7 +33,7 @@ const BoardWrapper = ( {id, children}: Props ) => {
     onMouseEnter={  () => handleMouseEnter(id)}
     onMouseLeave={  () => handleMouseLeave(id)}
     id={id} 
-    className="board-wrapper text-sm h-full w-full flex justify-between items-center p-2 hover:bg-muted-foreground hover:opacity-60"
+    className={cn("board-wrapper text-sm h-full w-full flex justify-between items-center p-2")}
     >
         {children}
     </div>

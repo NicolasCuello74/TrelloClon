@@ -85,7 +85,7 @@ const Aside: React.FC<AsideProps> = ({ isCollapsed, setIsCollapsed }) => {
                     <BoardOptions>
                         <DeleteBoards boardId={board.id}>
                           <X size={16}/>
-                        </DeleteBoards>                    
+                        </DeleteBoards>              
                     </BoardOptions>
                   </BoardWrapper>
                 </div>

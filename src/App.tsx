@@ -14,8 +14,8 @@ function App() {
             <Header/>
           </div>
 
-          <main className="flex flex-1 w-full bg-gray-800">
-            <div className="h-full">
+          <main id="Main" className="flex flex-1 w-full bg-gray-800">
+            <div id="Aside" className="h-full">
               <Aside isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed}/>
             </div>
             

@@ -9,17 +9,17 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-import { useBoardsStore } from "./utils/boardsStore"
+import { useListsStore } from "./utils/listStore"
 
 type Props = {
   children?: React.ReactNode  | React.ReactNode[],
-  boardId: string
+  listId: string
 }
 
-const DeleteBoards = ({ children, boardId }: Props) => {
-  const { removeBoard } = useBoardsStore()
-  const handleBoard = () => {
-    removeBoard(boardId)
+const DeleteList = ({ children, listId }: Props) => {
+  const { removeList } = useListsStore()
+  const handleList = () => {
+    removeList(listId)
   }
   return (
     <AlertDialog>
@@ -30,16 +30,16 @@ const DeleteBoards = ({ children, boardId }: Props) => {
         <AlertDialogHeader>
           <AlertDialogTitle>¿Estás absolutamente seguro?</AlertDialogTitle>
           <AlertDialogDescription>
-            Esta acción no se puede deshacer. Esto eliminará tu tablero de forma permanente.
+            Esta acción no se puede deshacer. Esto eliminará tu lista de forma permanente.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancelar</AlertDialogCancel>
-          <AlertDialogAction onClick={handleBoard}>Continuar</AlertDialogAction>
+          <AlertDialogAction onClick={handleList}>Continuar</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
   )
 }
 
-export default DeleteBoards;
+export default DeleteList;

@@ -7,8 +7,8 @@ import React from 'react';
 const BoardOptions = ({children}: Props) => {
     return (
         <div className={cn(
-            "board-options invisible",
-            "cursor-pointer hover:bg-muted hover:text-muted-foreground p-1 rounded-sm",
+            "board-options",
+            "cursor-pointer hover:bg-muted-foreground hover:opacity-60 text-muted p-1 rounded-sm flex justify-between items-center",
         )}>
             {children}
         </div>
