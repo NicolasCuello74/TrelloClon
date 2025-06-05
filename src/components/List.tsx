@@ -21,13 +21,14 @@ const List = ({ list, boardName }: Props) => {
   const { updateList } = useListsStore();
   const { tasks } = useTasksStore();
   const [editTitleList, setEditTitleList] = useState<boolean>(false);
-  const [nameList, setNameList] = useState<string>(list?.title || '');
-  
+  const [nameList, setNameList] = useState<string>(list?.title || '');  
+  const taskFilter = tasks.filter(task => task.listId  === list.id);
   
   const [todoList, todos, setTodos] = useDragAndDrop<HTMLDivElement, TaskType>(
-    tasks, 
+    taskFilter, 
     { group: boardName }
   );
+
 
   // Función para actualizar el título de la lista
   const handleListTitleChange = () => {
@@ -43,8 +44,13 @@ const List = ({ list, boardName }: Props) => {
   };
 
   useEffect(() => {
-    setTodos(list.tasks);
-  }, [list.tasks, setTodos]);
+    if (list) {
+      setNameList(list.title);
+    }
+    if (todos.length !== taskFilter.length) {
+      setTodos(taskFilter);
+    }
+  }, [list, todos, setTodos, taskFilter]);
 
   return (
     <div className={`list-${list.id} flex flex-col h-fit min-w-52 max-w-52 border-2 border-gray-300 rounded-2xl p-2 m-2 gap-2 bg-accent-foreground`}>
@@ -82,7 +88,7 @@ const List = ({ list, boardName }: Props) => {
         <Separator />
         <div ref={todoList} id={`list-tasks-${list.id}`} className="flex flex-col gap-2 pt-2">
           {todos.map((task) => (
-            <Task key={task.id} task={task} aria-describedby={`task-${task.id}`} />
+            <Task key={task.id} task={task} listId={list.id} aria-describedby={`task-${task.id}`} />
           ))}
         </div>
       </div>

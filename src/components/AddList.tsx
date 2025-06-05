@@ -28,7 +28,6 @@ const AddList = ({ children, boardId}: Props) => {
       id: crypto.randomUUID(),
       title: name,
       boardId: boardId,
-      tasks: [],
     })
     setName("")
   }

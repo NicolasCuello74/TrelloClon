@@ -27,7 +27,6 @@ const AddBoar = ({ children }: Props) => {
       id: crypto.randomUUID(),
       title: name,
       color: "bg-gray-800",
-      list: [],
     })
     setName("")
   }

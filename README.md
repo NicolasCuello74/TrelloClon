@@ -2,6 +2,13 @@
 
 Bienvenido a **Trello Clon**, una aplicación inspirada en Trello para la gestión de tareas y proyectos. Construida con **React**, **Vite**, **TailwindCSS**, y otras tecnologías modernas.
 
+## 🚀 Características
+- Drag & drop con `@formkit/drag-and-drop`
+- UI accesible con **Radix UI**
+- Gestión de estado con **Zustand**
+- Estilos modernos con **Tailwind CSS**
+- Routing con **React Router DOM**
+
 ## 🚀 Tecnologías
 
 Este proyecto utiliza las siguientes herramientas y librerías:

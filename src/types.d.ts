@@ -1,14 +1,14 @@
 export type Board = {
     id: string;
     title: string;
-    list: List[];
 }
 export type List = {
     id: string;
     title: string;
-    tasks: Task[];
+    boardId: string;
 }
 export type Task = {
     id: string;
     title: string;
+    listId: string;
 }
