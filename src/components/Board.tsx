@@ -11,29 +11,43 @@ import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 import AddList from './AddList';
 import BoardOptions from './BoardOptions';
 import BoardWrapper from './BoardWrapper';
+import { useDragAndDrop } from '@formkit/drag-and-drop/react';
+import { animations } from '@formkit/drag-and-drop';
+import { List as ListType } from '../types';
 
-const Board = () => { 
+const Board = () => {
     const { boardId } = useParams<{ boardId: string }>();
     const { boards, updateBoard, updateBoardColor } = useBoardsStore();
-    const {lists } = useListsStore();
+    const { lists } = useListsStore()
+
     const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-    
+
     const board = boards.find((b) => b.id === boardId);
 
     const [bgColor, setBgColor] = useState<string>(board?.color || 'bg-gray-800');
     const [editTitleBoard, setEditTitleBoard] = useState<boolean>(false);
-    
+
     const [nameBoard, setNameBoard] = useState<string>(board?.title || 'Board Name');
-    
+
     const boardLists = lists.filter(list => list.boardId === boardId);
 
+    const [todoList, todos, setTodos] = useDragAndDrop<HTMLDivElement, ListType>(
+        boardLists,
+        {
+            group: boardId,
+            plugins: [animations()],
+        });
 
     useEffect(() => {
         if (board) {
             setBgColor(board.color);
             setNameBoard(board.title)
         }
-    }, [board]);
+        // Actualiza el estado de los todos si la lista de listas del tablero cambia
+        if (todos.length !== boardLists.length) {
+        setTodos(boardLists);
+        }
+    }, [board, boardLists, boardId, setTodos, todos]);
 
     const handleColorChange = (color: string) => {
         setBgColor(color);
@@ -41,10 +55,10 @@ const Board = () => {
             updateBoardColor(boardId, color);
         }
     };
-    
+
 
     const handleTitleChange = () => {
-        if (!nameBoard.trim()) { 
+        if (!nameBoard.trim()) {
         setNameBoard(board?.title || "Board Name"); // Restaura el título anterior o establece uno predeterminado
         return;
         }
@@ -69,8 +83,8 @@ return (
     <div className={`flex flex-col h-full w-dvw overflow-y-hidden`}>
         <div className="board-header h-22 flex items-center pl-4 gap-4 text-lg text-muted">
             {editTitleBoard ? (
-                <input 
-                    type="text" 
+                <input
+                    type="text"
                     className='w-auto h-10 bg-transparent border-b-2 border-amber-50 focus:outline-none focus:border-amber-50 text-lg'
                     value={nameBoard}
                     onChange={(e)=> setNameBoard(e.target.value)}
@@ -99,15 +113,17 @@ return (
         <Separator/>
 
         <div className={`board-content flex flex-nowrap text-muted overflow-x-auto h-full max-h-[calc(100vh-80px)] ${bgColor}`}>
-            {boardLists.map((list) => (
-                <List key={`list-${list.id}`} list={list} boardName={board.title}></List>
-            ))}
-                
+            <div ref={todoList} className='flex flex-nowrap'>
+                {todos.map((todo) => (
+                    <List key={todo.id} list={todo} boardName={todo.title} />
+                ))}
+            </div>
+
             <div className='min-w-52 h-fit bg-muted-foreground rounded-2xl flex justify-between text-muted p-2 m-2'>
                 <BoardWrapper id='add-list'>
                 <h3>Añadir Lista</h3>
                     <BoardOptions>
-                        <AddList boardId={boardId ?? ''}> 
+                        <AddList boardId={boardId ?? ''}>
                             <Plus/>
                         </AddList>
                     </BoardOptions>

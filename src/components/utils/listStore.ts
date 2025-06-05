@@ -6,6 +6,7 @@ type ListsStore = {
     addList: (list: ListType) => void;
     removeList: (listId: string) => void;
     updateList: (listId: string, updatedList: ListType) => void;
+    reorderLists: (newOrder: ListType[]) => void;
 };
 
 export const useListsStore = create<ListsStore>((set) => ({
@@ -29,5 +30,10 @@ export const useListsStore = create<ListsStore>((set) => ({
         );
         localStorage.setItem('lists', JSON.stringify(updatedLists));
         return { lists: updatedLists };
+    }),
+
+    reorderLists: (newOrder) => set(() => {
+        localStorage.setItem('lists', JSON.stringify(newOrder));
+        return { lists: newOrder };
     })
 }));
